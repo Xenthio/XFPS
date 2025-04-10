@@ -1,0 +1,113 @@
+{
+  "__guid": "b3d35cf2-a458-4060-b894-c34eaa483a2e",
+  "GameObjects": [
+    {
+      "__guid": "6902d915-ed15-4d9e-a6ea-2514da8021b4",
+      "Flags": 0,
+      "Name": "Object",
+      "Position": "0,0,100",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.MapInstance",
+          "__guid": "cc43fb5c-7bf4-43a7-9dd4-7c5e913c19fc",
+          "__version": 1,
+          "EnableCollision": true,
+          "MapName": "facepunch.flatgrass",
+          "NoOrigin": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnMapLoaded": null,
+          "OnMapUnloaded": null,
+          "UseMapFromLaunch": false
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "3b00db4d-3092-407f-910b-b3c87cdf3df9",
+      "Flags": 0,
+      "Name": "Object",
+      "Position": "-2186.756,89.27254,821.4996",
+      "Enabled": true,
+      "__Prefab": "objects/player.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "7b4703bd-7c27-48ed-a83a-d48f6b5b2105",
+      "Flags": 0,
+      "Name": "WeaponTest",
+      "Position": "-1225.191,49.42859,168.6467",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "XBase.BaseWeapon",
+          "__guid": "2d3a04dc-1788-4991-920d-5e2d0c6c786c",
+          "AmmoResource": null,
+          "CanCancelReload": true,
+          "ClipContents": 20,
+          "ClipMaxSize": 30,
+          "DeployTime": 0.5,
+          "DisplayIcon": null,
+          "DisplayName": "My Weapon",
+          "HoldType": "HoldItem",
+          "IncrementalReloading": false,
+          "InventoryOrder": 0,
+          "InventorySlot": 0,
+          "IsSelfAmmo": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "ParentBone": "hold_r",
+          "ReloadTime": 2.5,
+          "StartingAmmo": 0,
+          "UsesAmmo": true,
+          "UsesClips": true,
+          "ViewModelPrefab": {
+            "_type": "gameobject",
+            "prefab": "weapons/mp5/weapon_mp5_v.prefab"
+          },
+          "WorldModelPrefab": {
+            "_type": "gameobject",
+            "prefab": "weapons/mp5/weapon_mp5_w.prefab"
+          }
+        }
+      ]
+    }
+  ],
+  "SceneProperties": {
+    "FixedUpdateFrequency": 50,
+    "MaxFixedUpdates": 5,
+    "NetworkFrequency": 30,
+    "NetworkInterpolation": true,
+    "PhysicsSubSteps": 1,
+    "ThreadedAnimation": true,
+    "TimeScale": 1,
+    "UseFixedUpdate": true,
+    "Metadata": {},
+    "NavMesh": {
+      "Enabled": false,
+      "IncludeStaticBodies": true,
+      "IncludeKeyframedBodies": true,
+      "EditorAutoUpdate": true,
+      "AgentHeight": 64,
+      "AgentRadius": 16,
+      "AgentStepSize": 18,
+      "AgentMaxSlope": 40,
+      "ExcludedBodies": "",
+      "IncludedBodies": ""
+    }
+  },
+  "ResourceVersion": 2,
+  "Title": null,
+  "Description": null,
+  "__references": [],
+  "__version": 2
+}

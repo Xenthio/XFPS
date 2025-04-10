@@ -6,9 +6,9 @@ namespace XBase;
 public class AmmoReserve : Component
 {
 	[Sync]
-	public NetDictionary<AmmoResource, int> AmmoCounts { get; set; } = new();
+	public NetDictionary<AmmoTypeResource, int> AmmoCounts { get; set; } = new();
 
-	public int GetAmmoCount( AmmoResource resource )
+	public int GetAmmoCount( AmmoTypeResource resource )
 	{
 		Assert.NotNull( resource, "Ammo resource was null" );
 
@@ -16,7 +16,7 @@ public class AmmoReserve : Component
 	}
 
 	[Rpc.Owner]
-	public void GiveAmmo( AmmoResource resource, int count )
+	public void GiveAmmo( AmmoTypeResource resource, int count )
 	{
 		if ( GetAmmoCount( resource ) + count > resource.MaxAmount )
 		{
@@ -29,12 +29,12 @@ public class AmmoReserve : Component
 		var amountGained = AddAmmoCount( resource, count );
 	}
 
-	public int SetAmmoCount( AmmoResource resource, int count )
+	public int SetAmmoCount( AmmoTypeResource resource, int count )
 	{
 		return AmmoCounts[resource] = count;
 	}
 
-	public int AddAmmoCount( AmmoResource resource, int count )
+	public int AddAmmoCount( AmmoTypeResource resource, int count )
 	{
 		var amountToGain = Math.Min( count, resource.MaxAmount - GetAmmoCount( resource ) );
 
@@ -43,7 +43,7 @@ public class AmmoReserve : Component
 		return amountToGain;
 	}
 
-	public int SubtractAmmoCount( AmmoResource resource, int count )
+	public int SubtractAmmoCount( AmmoTypeResource resource, int count )
 	{
 		var current = GetAmmoCount( resource );
 

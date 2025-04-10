@@ -78,7 +78,7 @@ internal class BucketInventory : Component, IInventory
 		//	Pickup( "weapons/camera/camera.prefab" );
 		Pickup( "weapons/glock/glock.prefab" );
 
-		Player.Ammo.GiveAmmo( ResourceLibrary.Get<AmmoResource>( "weapons/ammo/9mm.ammo" ), 100 );
+		Player.Ammo.GiveAmmo( ResourceLibrary.Get<AmmoTypeResource>( "weapons/ammo/9mm.ammo" ), 100 );
 	}
 
 	public void GiveAll()
@@ -96,7 +96,7 @@ internal class BucketInventory : Component, IInventory
 		Pickup( "weapons/gluongun/gluon_gun.prefab" );
 		Pickup( "weapons/hornetgun/hornetgun.prefab" );
 
-		var ammo = ResourceLibrary.GetAll<AmmoResource>();
+		var ammo = ResourceLibrary.GetAll<AmmoTypeResource>();
 		foreach ( var a in ammo )
 		{
 			Player.Ammo.GiveAmmo( a, 100 );

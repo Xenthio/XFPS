@@ -3,8 +3,8 @@
 /// <summary>
 /// Defines an ammo type.
 /// </summary>
-[GameResource( "Ammo Resource", "ammo", "Ammo", Icon = "📦", IconBgColor = "#f54248" )]
-public class AmmoResource : GameResource
+[GameResource( "Ammo Type", "ammo", "Ammo", Icon = "📦", IconBgColor = "#f54248" )]
+public class AmmoTypeResource : GameResource
 {
 	/// <summary>
 	/// The type of ammo this resource represents
@@ -19,13 +19,13 @@ public class AmmoResource : GameResource
 	public int MaxAmount { get; set; }
 
 	/// <summary>
-	/// The amount of ammo that is given when picked up
+	/// The icon for this ammo type.
 	/// </summary>
 	[Property, Group( "Visual" ), IconName]
 	public string Icon { get; set; }
 
 	/// <summary>
-	/// The amount of ammo that is given when picked up
+	/// The icon for this ammo type. (as SVG)
 	/// </summary>
 	[Property, Group( "Visual" ), TextArea]
 	public string SvgIcon { get; set; }

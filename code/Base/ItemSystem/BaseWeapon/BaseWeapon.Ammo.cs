@@ -16,7 +16,7 @@ public partial class BaseWeapon
 	/// <summary>
 	/// The <see cref="AmmoResource"/> for this weapon
 	/// </summary>
-	[Property, Feature( "Ammo" )] public AmmoResource AmmoResource { get; set; }
+	[Property, Feature( "Ammo" )] public AmmoTypeResource AmmoResource { get; set; }
 
 	/// <summary>
 	/// Does this weapon use clips?
@@ -70,7 +70,7 @@ public partial class BaseWeapon
 	/// <param name="count"></param>
 	/// <param name="ammoType"></param>
 	/// <returns></returns>
-	public bool TakeAmmo( int count, AmmoResource ammoType )
+	public bool TakeAmmo( int count, AmmoTypeResource ammoType )
 	{
 		if ( !UsesAmmo ) return true;
 
@@ -105,7 +105,7 @@ public partial class BaseWeapon
 	/// </summary>
 	/// <param name="ammoType"></param>
 	/// <returns></returns>
-	public bool HasAmmo( AmmoResource ammoType )
+	public bool HasAmmo( AmmoTypeResource ammoType )
 	{
 		if ( !UsesAmmo ) return true;
 
