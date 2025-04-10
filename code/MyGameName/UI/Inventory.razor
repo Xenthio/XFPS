@@ -1,0 +1,128 @@
+@using System;
+@using Sandbox;
+@using Sandbox.UI;
+@using XBase;
+@inherits PanelComponent
+@implements ILocalPlayerEvent
+
+<root>
+    @for (int i = 0; i < 5; i++)
+    {
+        <InventorySlot Index=@i Inventory=@inventory Hovered=@hovered Active=@active></InventorySlot>
+    }
+</root>
+
+@code
+{
+    [Property] public SoundEvent SwitchSound { get; set; }
+    [Property] public SoundEvent SelectSound { get; set; }
+    [Property] public SoundEvent CancelSound { get; set; }
+
+    IInventory inventory;
+    BaseCarryable hovered;
+    BaseCarryable active;
+
+    protected override int BuildHash() => HashCode.Combine(inventory, hovered, active);
+
+    void ILocalPlayerEvent.OnPickup(BaseCarryable weapon)
+    {
+        StateHasChanged();
+    }
+
+    protected override void OnUpdate()
+    {
+        inventory = Game.ActiveScene.GetAllComponents<IInventory>().Where(x => (x as Component).Network.IsOwner).FirstOrDefault();
+
+        Panel.SetClass("hidden", hovered is null);
+
+        DoInventoryInput();
+    }
+
+    RealTimeSince timeSinceInteraction;
+
+    void DoInventoryInput()
+    {
+        if (inventory is null)
+            return;
+
+        MoveSlot(-(int)Input.MouseWheel.y);
+
+        if (Input.Pressed("SlotNext")) MoveSlot(1);
+        if (Input.Pressed("SlotPrev")) MoveSlot(-1);
+
+        if (Input.Pressed("Slot1")) IterateSlot(0);
+        if (Input.Pressed("Slot2")) IterateSlot(1);
+        if (Input.Pressed("Slot3")) IterateSlot(2);
+        if (Input.Pressed("Slot4")) IterateSlot(3);
+        if (Input.Pressed("Slot5")) IterateSlot(4);
+
+        if (hovered is null)
+            return;
+
+        if (Input.Pressed("Attack1"))
+        {
+            Input.ReleaseAction("Attack1");
+            Input.SetAction("Attack1", false);
+            inventory.SetCurrentItem(hovered);
+            active = hovered;
+            hovered = null;
+            Sound.Play(SelectSound);
+        }
+
+        if (Input.Pressed("Attack2") || timeSinceInteraction > 2f)
+        {
+            Input.ReleaseAction("Attack2");
+            Input.SetAction("Attack2", false);
+            active = null;
+            hovered = null;
+            Sound.Play(CancelSound);
+        }
+    }
+
+    public void MoveSlot(int delta)
+    {
+        if (delta == 0)
+            return;
+
+		if (inventory.GetAllItems().Count == 0)
+            return;
+
+		var currentHover = hovered ?? active ?? inventory.GetCurrentItem() ?? inventory.GetAllItems().FirstOrDefault();
+
+		int currentIndex = inventory.GetAllItems().IndexOf(currentHover);
+
+        currentIndex += delta;
+		currentIndex %= inventory.GetAllItems().Count;
+        if (currentIndex < 0)
+			currentIndex = inventory.GetAllItems().Count + currentIndex;
+
+        active = null;
+		hovered = inventory.GetAllItems()[currentIndex];
+        timeSinceInteraction = 0;
+
+        Sound.Play(SwitchSound);
+    }
+
+    public void IterateSlot(int slot)
+    {
+		var slotWeapons = inventory.GetAllItems().Where(x => x.InventorySlot == slot).OrderBy(x => x.InventoryOrder).ToList();
+        if (slotWeapons.Count == 0)
+            return;
+
+		// if inventory wasn't open, and current weapon is in a different slot, currentIndex will be -1 (incremented to 0), and first weapon in target slot will be selected
+		var currentHover = hovered ?? active ?? inventory.GetCurrentItem() ?? slotWeapons.FirstOrDefault();
+
+		int currentIndex = slotWeapons.IndexOf(currentHover);
+
+        currentIndex += 1;
+        currentIndex %= slotWeapons.Count;
+        if (currentIndex < 0)
+            currentIndex = slotWeapons.Count + currentIndex;
+
+        active = null;
+        hovered = slotWeapons[currentIndex];
+        timeSinceInteraction = 0;
+
+        Sound.Play(SwitchSound);
+    }
+}

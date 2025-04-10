@@ -16,7 +16,7 @@
         "DeployTime": 0.5,
         "DisplayIcon": null,
         "DisplayName": "My Weapon",
-        "HoldType": "HoldItem",
+        "HoldType": "Rifle",
         "IncrementalReloading": false,
         "InventoryOrder": 0,
         "InventorySlot": 0,
@@ -28,16 +28,20 @@
         "OnComponentStart": null,
         "OnComponentUpdate": null,
         "ParentBone": "hold_r",
-        "ProjectileAmmoResource": null,
-        "ProjectilePrefab": null,
         "ReloadTime": 2.5,
         "ShootSound": null,
         "StartingAmmo": 0,
         "TimeBetweenShots": 0.1,
         "UsesAmmo": true,
         "UsesClips": true,
-        "ViewModelPrefab": null,
-        "WorldModelPrefab": null
+        "ViewModelPrefab": {
+          "_type": "gameobject",
+          "prefab": "weapons/mp5/weapon_mp5_v.prefab"
+        },
+        "WorldModelPrefab": {
+          "_type": "gameobject",
+          "prefab": "weapons/mp5/weapon_mp5_w.prefab"
+        }
       }
     ],
     "Children": [],

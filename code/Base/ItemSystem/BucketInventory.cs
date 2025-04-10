@@ -12,14 +12,64 @@ internal class BucketInventory : Component, IInventory
 
 	[Sync] public BaseCarryable CurrentItem { get; private set; }
 
+
+	public List<BaseCarryable> GetAllItems()
+	{
+		return Items;
+	}
 	public void SetCurrentItem( BaseCarryable item )
 	{
-		CurrentItem = item;
+		SwitchWeapon( item );
 	}
 
 	public BaseCarryable GetCurrentItem()
 	{
 		return CurrentItem;
+	}
+
+
+	public bool AddItemFromPrefab( GameObject prefab )
+	{
+		if ( !Networking.IsHost )
+			return false;
+
+		var baseCarry = prefab.Components.Get<BaseCarryable>( true );
+		if ( baseCarry is null )
+			return false;
+
+		var existing = Items.Where( x => x.GetType() == baseCarry.GetType() ).FirstOrDefault();
+		if ( existing.IsValid() )
+		{
+			// We already have this weapon type
+
+			if ( baseCarry is BaseWeapon baseWeapon && baseWeapon.UsesAmmo )
+			{
+				var ammo = baseWeapon.AmmoResource;
+				if ( ammo is null )
+					return false;
+
+				if ( Player.Ammo.GetAmmoCount( ammo ) >= ammo.MaxAmount )
+					return false;
+
+				Player.Ammo.GiveAmmo( ammo, baseWeapon.UsesClips ? baseWeapon.ClipContents : baseWeapon.StartingAmmo );
+				OnClientPickup( existing, true );
+				return true;
+			}
+
+			return false;
+		}
+
+		var clone = prefab.Clone( new CloneConfig { Parent = GameObject, StartEnabled = false } );
+		clone.NetworkSpawn( false, Network.Owner );
+
+		var weapon = clone.Components.Get<BaseCarryable>( true );
+		Assert.NotNull( weapon );
+
+		weapon.OnAdded( Player );
+
+		IPlayerEvent.PostToGameObject( Player.GameObject, e => e.OnPickup( weapon ) );
+		OnClientPickup( weapon );
+		return true;
 	}
 
 	public bool AddItem( BaseCarryable item )

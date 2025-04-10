@@ -29,55 +29,217 @@
       "Children": []
     },
     {
-      "__guid": "3b00db4d-3092-407f-910b-b3c87cdf3df9",
+      "__guid": "7b4703bd-7c27-48ed-a83a-d48f6b5b2105",
       "Flags": 0,
-      "Name": "Object",
-      "Position": "-2186.756,89.27254,821.4996",
+      "Name": "MP5",
+      "Position": "-1225.191,49.42859,168.6467",
       "Enabled": true,
-      "__Prefab": "objects/player.prefab",
+      "__Prefab": "weapons/mp5/weapon_mp5.prefab",
       "__PrefabVariables": {}
     },
     {
-      "__guid": "7b4703bd-7c27-48ed-a83a-d48f6b5b2105",
+      "__guid": "142dbd8c-dc9f-4fe5-ae90-56581a6fc1a4",
       "Flags": 0,
-      "Name": "WeaponTest",
-      "Position": "-1225.191,49.42859,168.6467",
+      "Name": "Object",
+      "Position": "-188.9905,13.68077,490.9376",
       "Enabled": true,
       "Components": [
         {
-          "__type": "XBase.BaseWeapon",
-          "__guid": "2d3a04dc-1788-4991-920d-5e2d0c6c786c",
-          "AmmoResource": null,
-          "CanCancelReload": true,
-          "ClipContents": 20,
-          "ClipMaxSize": 30,
-          "DeployTime": 0.5,
-          "DisplayIcon": null,
-          "DisplayName": "My Weapon",
-          "HoldType": "HoldItem",
-          "IncrementalReloading": false,
-          "InventoryOrder": 0,
-          "InventorySlot": 0,
-          "IsSelfAmmo": false,
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "bde417b8-5360-4b9a-9f0c-e382c28939aa",
+          "Center": "0,0,7",
+          "Friction": null,
+          "IsTrigger": true,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
-          "ParentBone": "hold_r",
-          "ReloadTime": 2.5,
-          "StartingAmmo": 0,
-          "UsesAmmo": true,
-          "UsesClips": true,
-          "ViewModelPrefab": {
-            "_type": "gameobject",
-            "prefab": "weapons/mp5/weapon_mp5_v.prefab"
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "Scale": "50,50,16",
+          "Static": false,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        },
+        {
+          "__type": "XBase.AmmoPickup",
+          "__guid": "52b7c1eb-143b-4cdb-bb0d-eb5ef319714a",
+          "AmmoAmount": 30,
+          "AmmoResource": "resource/ammotypes/smg.ammo",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "PickupSound": null,
+          "RespawnTimer": 5,
+          "ShouldRespawn": false
+        },
+        {
+          "__type": "Sandbox.SkinnedModelRenderer",
+          "__guid": "273d15a7-d7dd-4d5f-af73-88f59794900d",
+          "AnimationGraph": null,
+          "BodyGroups": 1,
+          "BoneMergeTarget": null,
+          "CreateAttachments": false,
+          "CreateBoneObjects": false,
+          "MaterialGroup": null,
+          "MaterialOverride": null,
+          "Model": "models/weapons/sbox_ammo/9mm_ammobox/ammobox_9mm.vmdl",
+          "Morphs": {},
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Parameters": {
+            "bools": {},
+            "ints": {},
+            "floats": {},
+            "vectors": {},
+            "rotations": {}
           },
-          "WorldModelPrefab": {
+          "PlaybackRate": 1,
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "RenderType": "On",
+          "Sequence": {
+            "Name": null
+          },
+          "Tint": "1,1,1,1",
+          "UseAnimGraph": true
+        }
+      ]
+    },
+    {
+      "__guid": "654bf69e-eb74-4963-b34a-1739d7eaa822",
+      "Flags": 0,
+      "Name": "Object",
+      "Position": "-188.9905,-62.84663,490.9376",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "ba6b9196-a658-4541-ada5-4b4e37d6e218",
+          "Center": "0,0,7",
+          "Friction": null,
+          "IsTrigger": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "Scale": "50,50,16",
+          "Static": false,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        },
+        {
+          "__type": "XBase.InventoryPickup",
+          "__guid": "f2092b49-3d45-4ae7-a74a-d4270c234701",
+          "Items": [
+            {
+              "_type": "gameobject",
+              "prefab": "weapons/mp5/weapon_mp5.prefab"
+            }
+          ],
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "PickupSound": null,
+          "RespawnTimer": 5,
+          "ShouldRespawn": false
+        },
+        {
+          "__type": "Sandbox.Prop",
+          "__guid": "c230845e-b626-4090-921c-8a3cb3b01432",
+          "BodyGroups": 3,
+          "Health": 0,
+          "IsStatic": false,
+          "MaterialGroup": null,
+          "Model": "models/weapons/sbox_smg_mp5/w_mp5.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnPropBreak": null,
+          "OnPropTakeDamage": null,
+          "StartAsleep": false,
+          "Tint": "1,1,1,1"
+        }
+      ]
+    },
+    {
+      "__guid": "096d67bb-ed08-48ac-875d-bf3f75360867",
+      "Flags": 0,
+      "Name": "Network",
+      "Position": "-1260.851,-58.97128,179.1483",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.NetworkHelper",
+          "__guid": "17bd1dca-f72a-4aae-9b69-732b828a33a8",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "PlayerPrefab": {
             "_type": "gameobject",
-            "prefab": "weapons/mp5/weapon_mp5_w.prefab"
-          }
+            "prefab": "objects/player.prefab"
+          },
+          "SpawnPoints": [],
+          "StartServer": true
+        },
+        {
+          "__type": "Sandbox.ScreenPanel",
+          "__guid": "6b76f548-db57-47d5-8f22-caef3ea4fe28",
+          "AutoScreenScale": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Opacity": 1,
+          "Scale": 1,
+          "ScaleStrategy": "ConsistentHeight",
+          "TargetCamera": null,
+          "ZIndex": 100
+        },
+        {
+          "__type": "Inventory",
+          "__guid": "603a18fb-92b2-48fb-a123-6ea33050bbb9",
+          "CancelSound": null,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "SelectSound": null,
+          "SwitchSound": null
         }
       ]
     }
@@ -108,6 +270,9 @@
   "ResourceVersion": 2,
   "Title": null,
   "Description": null,
-  "__references": [],
+  "__references": [
+    "facepunch.ammobox9mm#95475",
+    "facepunch.w_mp5#33703"
+  ],
   "__version": 2
 }

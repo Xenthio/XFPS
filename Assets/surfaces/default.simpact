@@ -1,0 +1,16 @@
+{
+  "BulletImpact": {
+    "_type": "gameobject",
+    "prefab": "particles/surfaces/impact.generic.prefab"
+  },
+  "BulletDecal": {
+    "_type": "gameobject",
+    "prefab": "particles/surfaces/impact.generic.prefab"
+  },
+  "ExtensionDefault": true,
+  "ExtensionTargets": [],
+  "__references": [
+    "facepunch.impactgeneric#88477"
+  ],
+  "__version": 0
+}
