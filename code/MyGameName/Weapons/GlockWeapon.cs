@@ -1,4 +1,5 @@
 using Sandbox.Rendering;
+using System;
 using XBase;
 public class GlockWeapon : BaseGun
 {
@@ -45,10 +46,10 @@ public class GlockWeapon : BaseGun
 		// Secondary fire has an increased aim cone
 		if ( secondary ) aimConeAmount *= 2;
 
-		var forward = player.EyeTransform.Rotation.Forward.WithAimCone( 0.25f + aimConeAmount * 3f, 0.25f + aimConeAmount * 3f );
-		var bulletRadius = GameConfig.GlockBulletRadius * GameConfig.BulletRadius;
+		var forward = player.Controller.AimRay.Forward;
+		var bulletRadius = 2 * 1;
 
-		var tr = Scene.Trace.Ray( player.EyeTransform.ForwardRay with { Forward = forward }, 4096 )
+		var tr = Scene.Trace.Ray( player.Controller.AimRay with { Forward = forward }, 4096 )
 							.IgnoreGameObjectHierarchy( player.GameObject )
 							.WithCollisionRules( "bullet" )
 							.Radius( bulletRadius )
@@ -59,17 +60,12 @@ public class GlockWeapon : BaseGun
 		TraceAttack( TraceAttackInfo.From( tr, Damage ) );
 		TimeSinceShoot = 0;
 
-		if ( player.IsLocalPlayer )
-		{
-			HitMarker.CreateFromTrace( tr );
-		}
-
 		player.Controller.EyeAngles += new Angles( Random.Shared.Float( -0.2f, -0.5f ), Random.Shared.Float( -1, 1 ) * 0.4f, 0 );
 
-		if ( !player.Controller.ThirdPerson )
+		/*if ( player.Controller.CameraMode != XMovement.PlayerWalkControllerComplex.CameraModes.ThirdPerson )
 		{
 			_ = new Sandbox.CameraNoise.Recoil( 1f, 0.3f );
-		}
+		}*/
 	}
 
 	// returns 0 for no aim spread, 1 for full aim cone
